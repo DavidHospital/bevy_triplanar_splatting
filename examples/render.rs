@@ -39,20 +39,20 @@ fn setup(
 
     // start loading materials
     // TODO: automatically choose textures based on GPU supported features
-    commands.insert_resource(MaterialHandles {
-        base_color: LoadingImage::new(asset_server.load("array_material/albedo.ktx2")),
-        occlusion: LoadingImage::new(asset_server.load("array_material/ao.ktx2")),
-        normal_map: LoadingImage::new(asset_server.load("array_material/normal.ktx2")),
-        metal_rough: LoadingImage::new(asset_server.load("array_material/metal_rough.ktx2")),
-        spawned: false,
-    });
     // commands.insert_resource(MaterialHandles {
-    //     base_color: LoadingImage::new(asset_server.load("array_material/albedo.basis")),
-    //     occlusion: LoadingImage::new(asset_server.load("array_material/ao.basis")),
-    //     normal_map: LoadingImage::new(asset_server.load("array_material/normal.basis")),
-    //     metal_rough: LoadingImage::new(asset_server.load("array_material/metal_rough.basis")),
+    //     base_color: LoadingImage::new(asset_server.load("array_material/albedo.ktx2")),
+    //     occlusion: LoadingImage::new(asset_server.load("array_material/ao.ktx2")),
+    //     normal_map: LoadingImage::new(asset_server.load("array_material/normal.ktx2")),
+    //     metal_rough: LoadingImage::new(asset_server.load("array_material/metal_rough.ktx2")),
     //     spawned: false,
     // });
+    commands.insert_resource(MaterialHandles {
+        base_color: LoadingImage::new(asset_server.load("array_material/albedo.basis")),
+        occlusion: LoadingImage::new(asset_server.load("array_material/ao.basis")),
+        normal_map: LoadingImage::new(asset_server.load("array_material/normal.basis")),
+        metal_rough: LoadingImage::new(asset_server.load("array_material/metal_rough.basis")),
+        spawned: false,
+    });
 
     // commands.insert_resource(AmbientLight {
     //     brightness: 2.0,

@@ -12,6 +12,8 @@ use bevy::{
     },
 };
 
+use crate::{TRIPLANAR_MATERIAL_FRAG_SHADER_HANDLE, TRIPLANAR_MATERIAL_VERT_SHADER_HANDLE};
+
 // TODO: per-layer metallic/emissive/etc
 //
 /// An extension of `bevy_pbr`'s `StandardMaterial` that supports triplanar
@@ -100,10 +102,10 @@ impl Default for TriplanarMaterial {
 
 impl Material for TriplanarMaterial {
     fn vertex_shader() -> ShaderRef {
-        "shaders/triplanar_material_vert.wgsl".into()
+        TRIPLANAR_MATERIAL_VERT_SHADER_HANDLE.into()
     }
     fn fragment_shader() -> ShaderRef {
-        "shaders/triplanar_material_frag.wgsl".into()
+        TRIPLANAR_MATERIAL_FRAG_SHADER_HANDLE.into()
     }
 
     fn specialize(
