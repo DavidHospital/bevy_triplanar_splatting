@@ -3,13 +3,13 @@
 fn sample_normal_map(
     two_component_normal_map: bool,
     flip_normal_map_y: bool,
-    tex: texture_2d_array<f32>,
+    tex: texture_2d<f32>,
     samp: sampler,
     flags: u32,
     uv: vec2<f32>,
     layer: i32
 ) -> vec3<f32> {
-    var Nt = textureSample(tex, samp, uv, layer).rgb;
+    var Nt = textureSample(tex, samp, uv).rgb;
     if (two_component_normal_map) {
         Nt = vec3<f32>(Nt.rg * 2.0 - 1.0, 0.0);
         Nt.z = sqrt(1.0 - Nt.x * Nt.x - Nt.y * Nt.y);
@@ -40,7 +40,7 @@ fn calculate_triplanar_mapping(p: vec3<f32>, n: vec3<f32>, k: f32) -> TriplanarM
 fn triplanar_normal_to_world(
     two_component_normal_map: bool,
     flip_normal_map_y: bool,
-    tex: texture_2d_array<f32>,
+    tex: texture_2d<f32>,
     samp: sampler,
     flags: u32,
     layer: i32,
@@ -71,7 +71,7 @@ fn triplanar_normal_to_world(
 fn triplanar_normal_to_world_splatted(
     two_component_normal_map: bool,
     flip_normal_map_y: bool,
-    tex: texture_2d_array<f32>,
+    tex: texture_2d<f32>,
     samp: sampler,
     flags: u32,
     w_mtl: vec4<f32>,

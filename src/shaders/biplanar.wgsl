@@ -99,18 +99,18 @@ fn calculate_biplanar_mapping(p: vec3<f32>, n_in: vec3<f32>, k: f32) -> Biplanar
 }
 
 fn biplanar_texture(
-    tex: texture_2d_array<f32>,
+    tex: texture_2d<f32>,
     samp: sampler,
     layer: i32,
     bm: BiplanarMapping
 ) -> vec4<f32> {
-    let x = textureSampleGrad(tex, samp, bm.ma_uv, layer, bm.ma_dpdx, bm.ma_dpdy);
-    let y = textureSampleGrad(tex, samp, bm.me_uv, layer, bm.me_dpdx, bm.me_dpdy);
+    let x = textureSampleGrad(tex, samp, bm.ma_uv, bm.ma_dpdx, bm.ma_dpdy);
+    let y = textureSampleGrad(tex, samp, bm.me_uv, bm.me_dpdx, bm.me_dpdy);
     return bm.w.x * x + bm.w.y * y;
 }
 
 fn biplanar_texture_splatted(
-    tex: texture_2d_array<f32>,
+    tex: texture_2d<f32>,
     samp: sampler,
     w_mtl: vec4<f32>,
     bimap: BiplanarMapping

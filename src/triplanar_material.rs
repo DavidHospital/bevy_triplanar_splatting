@@ -20,7 +20,7 @@ use crate::{TRIPLANAR_MATERIAL_FRAG_SHADER_HANDLE, TRIPLANAR_MATERIAL_VERT_SHADE
 /// mapping and material splatting/blending.
 ///
 /// In order to support splatting, we need to add the `"MaterialWeights"` vertex
-/// attribute and give all textures dimension `"2d_array"`. Up to 4 layers are
+/// attribute and give all textures dimension `"2d"`. Up to 4 layers are
 /// supported by the shader. Material weights are encoded as 4 `u8` numbers that
 /// get packed into a `u32`.
 #[derive(AsBindGroup, Asset, Reflect, Debug, Clone, TypeUuid)]
@@ -31,13 +31,13 @@ use crate::{TRIPLANAR_MATERIAL_FRAG_SHADER_HANDLE, TRIPLANAR_MATERIAL_VERT_SHADE
 pub struct TriplanarMaterial {
     pub base_color: Color,
 
-    #[texture(1, dimension = "2d_array")]
+    #[texture(1, dimension = "2d")]
     #[sampler(2)]
     pub base_color_texture: Option<Handle<Image>>,
 
     pub emissive: Color,
 
-    #[texture(3, dimension = "2d_array")]
+    #[texture(3, dimension = "2d")]
     #[sampler(4)]
     pub emissive_texture: Option<Handle<Image>>,
 
@@ -45,20 +45,20 @@ pub struct TriplanarMaterial {
 
     pub metallic: f32,
 
-    #[texture(5, dimension = "2d_array")]
+    #[texture(5, dimension = "2d")]
     #[sampler(6)]
     pub metallic_roughness_texture: Option<Handle<Image>>,
 
     #[doc(alias = "specular_intensity")]
     pub reflectance: f32,
 
-    #[texture(9, dimension = "2d_array")]
+    #[texture(9, dimension = "2d")]
     #[sampler(10)]
     pub normal_map_texture: Option<Handle<Image>>,
 
     pub flip_normal_map_y: bool,
 
-    #[texture(7, dimension = "2d_array")]
+    #[texture(7, dimension = "2d")]
     #[sampler(8)]
     pub occlusion_texture: Option<Handle<Image>>,
 
